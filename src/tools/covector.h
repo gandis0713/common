@@ -6,7 +6,7 @@
 
 #include <algorithm>
 
-template <typename T>
+template <typename Type>
 class CoVector
 {
 public:
@@ -14,13 +14,13 @@ public:
     ~CoVector();
 
     Gint size();
-    Gbool push_back(T value);
-    Gbool insert(Gint nIndex, T value);
+    Gbool push_back(Type value);
+    Gbool insert(Gint nIndex, Type value);
     Gbool remove(Gint nIndex);
-    T& operator [](Gint nIndex);
+    Type& operator [](Gint nIndex);
 
 private:
-    T* m_pData;
+    Type* m_pData;
     Gint m_nBufferSize;
     Gint m_nLength;
 
@@ -28,28 +28,30 @@ private:
     Gbool increaseBuffer();
 };
 
-template <typename T>
-CoVector<T>::CoVector(Gint nBufferSize)
+template <typename Type>
+CoVector<Type>::CoVector(Gint nBufferSize)
     : m_nBufferSize(nBufferSize)
     , m_nLength(0)
 {
-    m_pData = new T[m_nBufferSize];
+    m_pData = new Type[m_nBufferSize];
 }
 
-template <typename T>
-CoVector<T>::~CoVector()
+template <typename Type>
+CoVector<Type>::~CoVector()
 {
     delete[] m_pData;
 }
 
-template <typename T>
-Gint CoVector<T>::size()
+template <typename Type>
+Gint
+CoVector<Type>::size()
 {
     return m_nLength;
 }
 
-template <typename T>
-Gbool CoVector<T>::push_back(T value)
+template <typename Type>
+Gbool
+CoVector<Type>::push_back(Type value)
 {
     if(m_nLength >= m_nBufferSize)
     {
@@ -62,8 +64,9 @@ Gbool CoVector<T>::push_back(T value)
     return true;
 }
 
-template <typename T>
-Gbool CoVector<T>::insert(Gint nIndex, T value)
+template <typename Type>
+Gbool
+CoVector<Type>::insert(Gint nIndex, Type value)
 {
     if(m_nLength >= m_nBufferSize)
     {
@@ -71,31 +74,34 @@ Gbool CoVector<T>::insert(Gint nIndex, T value)
             return false;
     }
 
-    memmove(m_pData + nIndex + 1, m_pData + nIndex, (m_nLength - nIndex) * sizeof(T));
+    memmove(m_pData + nIndex + 1, m_pData + nIndex, (m_nLength - nIndex) * sizeof( Type));
     m_pData[nIndex] = value;
     m_nLength++;
 
     return true;
 }
 
-template <typename T>
-Gbool CoVector<T>::remove(Gint nIndex)
+template <typename Type>
+Gbool
+CoVector<Type>::remove(Gint nIndex)
 {
-    memmove(m_pData + nIndex, m_pData + nIndex + 1, (--m_nLength - nIndex) * sizeof(T));
+    memmove(m_pData + nIndex, m_pData + nIndex + 1, (--m_nLength - nIndex) * sizeof( Type));
     return true;
 }
 
-template <typename T>
-T& CoVector<T>::operator [](Gint nIndex)
+template <typename Type>
+Type&
+CoVector<Type>::operator [](Gint nIndex)
 {
     return m_pData[nIndex];
 }
 
-template <typename T>
-Gbool CoVector<T>::increaseBuffer()
+template <typename Type>
+Gbool
+CoVector<Type>::increaseBuffer()
 {
     Gint nNewBufferSize = m_nBufferSize + 100;
-    T *pData = new T[nNewBufferSize];
+    Type *pData = new Type[nNewBufferSize];
     std::copy_n(m_pData, m_nBufferSize, pData);
 
     delete[] m_pData;
