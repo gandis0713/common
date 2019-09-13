@@ -35,7 +35,8 @@ HEADERS += \
     corelib.h \
     tools/codefine.h \
     tools/covector.h \
-    tools/costring.h
+    tools/costring.h \
+    tools/colist.h
 
 unix {
     target.path = /usr/lib
