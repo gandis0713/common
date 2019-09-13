@@ -16,9 +16,11 @@ DEFINES += CORELIB_LIBRARY
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
+
 DESTDIR = build/lib
 OBJECTS_DIR = temp/obj
 MOC_DIR = temp/moc
+RCC_DIR = temp/rcc
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -28,12 +30,12 @@ MOC_DIR = temp/moc
 include(install.pri);
 
 SOURCES += \
-    colist.cpp
+    dummp.cpp
 
 HEADERS += \
     corelib.h \
-    codefine.h \
-    colist.h
+    tools/codefine.h \
+    tools/covector.h
 
 unix {
     target.path = /usr/lib
@@ -42,3 +44,4 @@ unix {
 
 DISTFILES += \
     libcore.pri
+

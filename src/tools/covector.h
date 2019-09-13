@@ -1,9 +1,35 @@
-#include "colist.h"
+#ifndef COLIST_H
+#define COLIST_H
+
+#include "corelib.h"
+#include "codefine.h"
 
 #include <algorithm>
 
 template <typename T>
-CoList<T>::CoList(Gint nBufferSize)
+class CoVector
+{
+public:
+    explicit CoVector(Gint nBufferSize = 100);
+    ~CoVector();
+
+    Gint size();
+    Gbool push_back(T value);
+    Gbool insert(Gint nIndex, T value);
+    Gbool remove(Gint nIndex);
+    T& operator [](Gint nIndex);
+
+private:
+    T* m_pData;
+    Gint m_nBufferSize;
+    Gint m_nLength;
+
+private:
+    Gbool increaseBuffer();
+};
+
+template <typename T>
+CoVector<T>::CoVector(Gint nBufferSize)
     : m_nBufferSize(nBufferSize)
     , m_nLength(0)
 {
@@ -11,19 +37,19 @@ CoList<T>::CoList(Gint nBufferSize)
 }
 
 template <typename T>
-CoList<T>::~CoList()
+CoVector<T>::~CoVector()
 {
     delete[] m_pData;
 }
 
 template <typename T>
-Gint CoList<T>::size()
+Gint CoVector<T>::size()
 {
     return m_nLength;
 }
 
 template <typename T>
-Gbool CoList<T>::push_back(T value)
+Gbool CoVector<T>::push_back(T value)
 {
     if(m_nLength >= m_nBufferSize)
     {
@@ -37,7 +63,7 @@ Gbool CoList<T>::push_back(T value)
 }
 
 template <typename T>
-Gbool CoList<T>::insert(Gint nIndex, T value)
+Gbool CoVector<T>::insert(Gint nIndex, T value)
 {
     if(m_nLength >= m_nBufferSize)
     {
@@ -53,20 +79,20 @@ Gbool CoList<T>::insert(Gint nIndex, T value)
 }
 
 template <typename T>
-Gbool CoList<T>::remove(Gint nIndex)
+Gbool CoVector<T>::remove(Gint nIndex)
 {
     memmove(m_pData + nIndex, m_pData + nIndex + 1, (--m_nLength - nIndex) * sizeof(T));
     return true;
 }
 
 template <typename T>
-T& CoList<T>::operator [](Gint nIndex)
+T& CoVector<T>::operator [](Gint nIndex)
 {
     return m_pData[nIndex];
 }
 
 template <typename T>
-Gbool CoList<T>::increaseBuffer()
+Gbool CoVector<T>::increaseBuffer()
 {
     Gint nNewBufferSize = m_nBufferSize + 100;
     T *pData = new T[nNewBufferSize];
@@ -81,3 +107,6 @@ Gbool CoList<T>::increaseBuffer()
     m_nBufferSize = nNewBufferSize;
     return true;
 }
+
+
+#endif // COLIST_H
