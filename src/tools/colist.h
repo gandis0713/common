@@ -14,6 +14,7 @@ public:
 
     void push_back(Type data);
     Gbool insert(Gint nIndex, Type data);
+    void removeAll();
 
     Type& operator [](Gint nIndex);
 
@@ -122,7 +123,15 @@ CoList<Type>::insert(Gint nIndex, Type data)
 }
 
 template <typename Type>
-Type& CoList<Type>::operator [](Gint nIndex)
+void
+CoList<Type>::removeAll()
+{
+
+}
+
+template <typename Type>
+Type&
+CoList<Type>::operator [](Gint nIndex)
 {
     node *pCur = m_pHeadNode;
     Gint nCount = 0;
