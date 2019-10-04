@@ -29,14 +29,16 @@ RCC_DIR = temp/rcc
 
 
 SOURCES += \
-    tools/costring.cpp
+    tools/costring.cpp \
+    tools/cobst.cpp
 
 HEADERS += \
     corelib.h \
     tools/codefine.h \
     tools/covector.h \
     tools/costring.h \
-    tools/colist.h
+    tools/colist.h \
+    tools/cobst.h
 
 unix {
     target.path = /usr/lib
