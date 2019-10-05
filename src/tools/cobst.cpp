@@ -16,6 +16,29 @@ CoBSTNode::~CoBSTNode()
 
 namespace NsBST
 {
+
+CoBSTNode* search(CoBSTNode *pBSTNode,
+                  Gint nValue)
+{
+    if(pBSTNode == NULL)
+        return NULL;
+
+    if(pBSTNode->m_nValue == nValue)
+    {
+        return pBSTNode;
+    }
+
+    CoBSTNode *pNode = search(pBSTNode->m_pLeftNode, nValue);
+    if(pNode != NULL)
+        return pNode;
+
+    pNode = search(pBSTNode->m_pRightNode, nValue);
+    if(pNode != NULL)
+        return pNode;
+
+    return NULL;
+}
+
 void insert(CoBSTNode *&pBSTNode,
             Gint nValue)
 {

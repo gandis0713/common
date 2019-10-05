@@ -25,5 +25,29 @@ int main(int argc, char *argv[])
     NsBST::PrintPreOrder(pBSTNode);
     NsBST::PrintInOrder(pBSTNode); //1 2 3 4 5 6
 
+    CoBSTNode *pNode = NsBST::search(pBSTNode, 5);
+    if(pNode != NULL)
+    {
+        qDebug() << pNode->m_nValue;
+    }
+
+    pNode = NsBST::search(pNode, 6);
+    if(pNode != NULL)
+    {
+        qDebug() << pNode->m_nValue;
+    }
+
+    pNode = NsBST::search(pNode, 1);
+    if(pNode != NULL)
+    {
+        qDebug() << pNode->m_nValue;
+    }
+    pNode = NsBST::search(pBSTNode, 6);
+    if(pNode != NULL)
+    {
+        qDebug() << pNode->m_nValue;
+    }
+
+
     return a.exec();
 }

@@ -17,12 +17,14 @@ public:
 
 namespace NsBST
 {
-void CORELIB insert(CoBSTNode *&pBSTNode,
-            Gint nValue);
+CORELIB CoBSTNode* search(CoBSTNode *pBSTNode,
+                          Gint nValue);
+CORELIB void insert(CoBSTNode *&pBSTNode,
+                    Gint nValue);
 
-void CORELIB PrintPostOrder(CoBSTNode *pBSTNode);
-void CORELIB PrintPreOrder(CoBSTNode *pBSTNode);
-void CORELIB PrintInOrder(CoBSTNode *pBSTNode);
+CORELIB void PrintPostOrder(CoBSTNode *pBSTNode);
+CORELIB void PrintPreOrder(CoBSTNode *pBSTNode);
+CORELIB void PrintInOrder(CoBSTNode *pBSTNode);
 }
 
 #endif // COBST_H
