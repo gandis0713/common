@@ -14,15 +14,16 @@ int main(int argc, char *argv[])
 
     CoBSTNode *pBSTNode = NULL;
 
-    BST::insert(pBSTNode, 1);
-    BST::insert(pBSTNode, 2);
-    BST::insert(pBSTNode, 10);
-    BST::insert(pBSTNode, 12);
-    BST::insert(pBSTNode, 6);
-    BST::insert(pBSTNode, 14);
-    BST::insert(pBSTNode, 100);
+    NsBST::insert(pBSTNode, 3);
+    NsBST::insert(pBSTNode, 1);
+    NsBST::insert(pBSTNode, 2);
+    NsBST::insert(pBSTNode, 4);
+    NsBST::insert(pBSTNode, 5);
+    NsBST::insert(pBSTNode, 6);
 
-    BST::preorderPrint(pBSTNode);
+    NsBST::PrintPostOrder(pBSTNode);
+    NsBST::PrintPreOrder(pBSTNode);
+    NsBST::PrintInOrder(pBSTNode); //1 2 3 4 5 6
 
     return a.exec();
 }

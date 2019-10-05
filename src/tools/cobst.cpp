@@ -14,38 +14,66 @@ CoBSTNode::~CoBSTNode()
     // do nothing.
 }
 
-namespace BST
+namespace NsBST
 {
 void insert(CoBSTNode *&pBSTNode,
             Gint nValue)
 {
-    qDebug() << "value : " << nValue;
     if(pBSTNode == NULL)
     {
-        qDebug() << __FUNCTION__ << "New";
         pBSTNode = new (std::nothrow) CoBSTNode;
         pBSTNode->m_nValue = nValue;
+        return;
+    }
+
+    if(pBSTNode->m_nValue > nValue)
+    {
+        insert(pBSTNode->m_pLeftNode, nValue);
     }
     else
     {
-        if(pBSTNode->m_nValue > nValue)
-        {
-            qDebug() << __FUNCTION__ << "Left";
-            insert(pBSTNode->m_pLeftNode, nValue);
-        }
-        else
-        {
-            qDebug() << __FUNCTION__ << "Right";
-            insert(pBSTNode->m_pRightNode, nValue);
-        }
+        insert(pBSTNode->m_pRightNode, nValue);
     }
 }
 
-void preorderPrint(CoBSTNode *pBSTNode)
+/**
+ * @brief Left -> Root -> Right
+ */
+void PrintInOrder(CoBSTNode *pBSTNode)
 {
-    if(pBSTNode == NULL) return;
-    qDebug() << pBSTNode->m_nValue;
-    preorderPrint(pBSTNode->m_pRightNode);
-    preorderPrint(pBSTNode->m_pLeftNode);
+    if(pBSTNode == NULL)
+        return;
+
+    PrintInOrder(pBSTNode->m_pLeftNode);
+    qDebug() << __FUNCTION__ << pBSTNode->m_nValue;
+    PrintInOrder(pBSTNode->m_pRightNode);
 }
+
+/**
+ * @brief Root -> Left -> Right
+ */
+void PrintPreOrder(CoBSTNode *pBSTNode)
+{
+    if(pBSTNode == NULL)
+        return;
+
+    qDebug() << __FUNCTION__ << pBSTNode->m_nValue;
+    PrintPreOrder(pBSTNode->m_pLeftNode);
+    PrintPreOrder(pBSTNode->m_pRightNode);
+}
+
+/**
+ * @brief Left -> Right -> Root
+ */
+void PrintPostOrder(CoBSTNode *pBSTNode)
+{
+    if(pBSTNode == NULL)
+        return;
+
+    PrintPostOrder(pBSTNode->m_pLeftNode);
+    PrintPostOrder(pBSTNode->m_pRightNode);
+    qDebug() << __FUNCTION__ << pBSTNode->m_nValue;
+}
+
+
 }

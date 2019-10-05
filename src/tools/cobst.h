@@ -15,12 +15,14 @@ public:
     CoBSTNode *m_pRightNode;
 };
 
-namespace BST
+namespace NsBST
 {
 void CORELIB insert(CoBSTNode *&pBSTNode,
             Gint nValue);
 
-void CORELIB preorderPrint(CoBSTNode *pBSTNode);
+void CORELIB PrintPostOrder(CoBSTNode *pBSTNode);
+void CORELIB PrintPreOrder(CoBSTNode *pBSTNode);
+void CORELIB PrintInOrder(CoBSTNode *pBSTNode);
 }
 
 #endif // COBST_H
