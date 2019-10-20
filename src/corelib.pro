@@ -38,7 +38,8 @@ HEADERS += \
     tools/covector.h \
     tools/costring.h \
     tools/colist.h \
-    tools/cobst.h
+    tools/cobst.h \
+    tools/costack.h
 
 unix {
     target.path = /usr/lib
